@@ -54,7 +54,13 @@ document.querySelector("#answer1").addEventListener("click", function(){
         document.querySelector("#result").innerHTML = `Es correcto`
     }else{
         console.log("es incorrecto")
-        document.querySelector("#result").innerHTML = `Es incorrecto`
+        for(let i=0;i<4;i++){
+            if(quiz[rand].respuestas[i].esCorrecta==true){
+                document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
+                i=4
+            }
+        }
+        
     }
 })
 
@@ -65,7 +71,12 @@ document.querySelector("#answer2").addEventListener("click", function(){
         document.querySelector("#result").innerHTML = `Es correcto`
     }else{
         console.log("es incorrecto")
-        document.querySelector("#result").innerHTML = `Es incorrecto`
+        for(let i=0;i<4;i++){
+            if(quiz[rand].respuestas[i].esCorrecta==true){
+                document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
+                i=4
+            }
+        }
     }
 })
 
@@ -76,7 +87,12 @@ document.querySelector("#answer3").addEventListener("click", function(){
         document.querySelector("#result").innerHTML = `Es correcto`
     }else{
         console.log("es incorrecto")
-        document.querySelector("#result").innerHTML = `Es incorrecto`
+        for(let i=0;i<4;i++){
+            if(quiz[rand].respuestas[i].esCorrecta==true){
+                document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
+                i=4
+            }
+        }
     }
 })
 
@@ -87,6 +103,11 @@ document.querySelector("#answer4").addEventListener("click", function(){
         document.querySelector("#result").innerHTML = `Es correcto`
     }else{
         console.log("es incorrecto")
-        document.querySelector("#result").innerHTML = `Es incorrecto`
+        for(let i=0;i<4;i++){
+            if(quiz[rand].respuestas[i].esCorrecta==true){
+                document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
+                i=4
+            }
+        }
     }
 })
