@@ -16,11 +16,13 @@ console.log('suma: ', parseInt(numero)+parseInt(numero2))
 
 //Juego de los numeros
 const numeroAdivinar = 10
-let button =document.getElementById("botonAdivinar")
+let button = document.getElementById("botonAdivinar")
 
 let intentos= 3
 while(intentos!=0){
-    button.addEventListener("click", )
+    button.addEventListener("click", function(){
+        let numeroIntrod = document.getElementById("numeroAdivinar").innerHTML
+    })
 
     if(numeroIntrod>numeroAdivinar){
         console.log('Es mayor')
