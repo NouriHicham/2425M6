@@ -41,6 +41,8 @@ const quiz = [
 // saca un numero random entre el numero de preguntas que haya en el array
 let rand = Math.floor(Math.random() * quiz.length);
 
+document.querySelector("#numeroRandom").innerHTML = rand;
+
 document.querySelector("#question").innerHTML = `${quiz[rand].pregunta}`
 
 for(let i=0;i<4;i++){
@@ -52,12 +54,14 @@ document.querySelector("#answer1").addEventListener("click", function(){
     if(quiz[rand].respuestas[0].esCorrecta==true){
         console.log("es correcto")
         document.querySelector("#result").innerHTML = `Es correcto`
+        document.querySelector('#result').style.backgroundColor = "#4a93fd";
     }else{
         console.log("es incorrecto")
         for(let i=0;i<4;i++){
             if(quiz[rand].respuestas[i].esCorrecta==true){
                 document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
                 i=4
+                document.querySelector('#result').style.backgroundColor = "red";
             }
         }
         
@@ -69,12 +73,14 @@ document.querySelector("#answer2").addEventListener("click", function(){
     if(quiz[rand].respuestas[1].esCorrecta==true){
         console.log("es correcto")
         document.querySelector("#result").innerHTML = `Es correcto`
+        document.querySelector('#result').style.backgroundColor = "#4a93fd";
     }else{
         console.log("es incorrecto")
         for(let i=0;i<4;i++){
             if(quiz[rand].respuestas[i].esCorrecta==true){
                 document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
                 i=4
+                document.querySelector('#result').style.backgroundColor = "red";
             }
         }
     }
@@ -85,12 +91,14 @@ document.querySelector("#answer3").addEventListener("click", function(){
     if(quiz[rand].respuestas[2].esCorrecta==true){
         console.log("es correcto")
         document.querySelector("#result").innerHTML = `Es correcto`
+        document.querySelector('#result').style.backgroundColor = "#4a93fd";
     }else{
         console.log("es incorrecto")
         for(let i=0;i<4;i++){
             if(quiz[rand].respuestas[i].esCorrecta==true){
                 document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
                 i=4
+                document.querySelector('#result').style.backgroundColor = "red";
             }
         }
     }
@@ -101,12 +109,14 @@ document.querySelector("#answer4").addEventListener("click", function(){
     if(quiz[rand].respuestas[3].esCorrecta==true){
         console.log("es correcto")
         document.querySelector("#result").innerHTML = `Es correcto`
+        document.querySelector('#result').style.backgroundColor = "#4a93fd";
     }else{
         console.log("es incorrecto")
         for(let i=0;i<4;i++){
             if(quiz[rand].respuestas[i].esCorrecta==true){
                 document.querySelector("#result").innerHTML = `Es incorrecto, la respuesta correcta es: ${quiz[rand].respuestas[i].texto}`
                 i=4
+                document.querySelector('#result').style.backgroundColor = "red";
             }
         }
     }

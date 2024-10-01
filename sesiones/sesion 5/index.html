@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sesion 5</title>
+    <style>
+        #p1{
+            background-color: red;
+        }
+        .alerta{
+            color: red;
+        }
+        .textoGrande{
+            font-size: 50px;
+        }
+        .borde{
+            border: 2px solid;
+        }
+        .cuadrado{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estilos, clases y atributos del DOM</h1>
+    <p id="p1">COLOR DE FONDO</p>
+    <p id="p2" class="alerta textoGrande" title="title de parrafo">párrafo con clases</p>
+    <div class="cuadrado">1</div>
+    <div class="cuadrado">2</div>
+    <div class="cuadrado">3</div>
+    <script>
+        //modificar background color
+        document.querySelector('#p1').style.backgroundColor = "blue";
+
+        //ocultar elemento
+        document.querySelector('#p1').style.display = "block";
+
+        //quitar y añadir clases
+        console.log(document.querySelector('#p2').classList)
+        document.querySelector("#p2").classList.add("borde")
+        document.querySelector("#p2").classList.remove("alerta")
+
+        //Ver/añadir y modificar atributos
+        const p2 = document.querySelector("#p2");
+        console.log("title de p2: ", p2.getAttribute("title"));
+        p2.setAttribute("title", "title modificado")
+        console.log("nuevo title: ", p2.getAttribute("title"));
+
+        const cuadrado = document.querySelector(".cuadrado")
+        console.log(cuadrado.innerHTML)
+
+        const cuadrados=document.querySelectorAll(".cuadrado")
+        console.log("cuadrados: ",cuadrados)
+        console.log("segundo cuadrado: ", cuadrados[1].innerHTML);
+        cuadrados[2].classList.add("borde")
+    </script>
+</body>
+</html>
