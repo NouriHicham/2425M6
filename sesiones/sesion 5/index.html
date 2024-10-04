@@ -32,6 +32,10 @@
     <div class="cuadrado">1</div>
     <div class="cuadrado">2</div>
     <div class="cuadrado">3</div>
+
+    <input id="input1" type="text" value="ejemplo"> 
+    <button>dale</button>
+
     <script>
         //modificar background color
         document.querySelector('#p1').style.backgroundColor = "blue";
@@ -57,6 +61,21 @@
         console.log("cuadrados: ",cuadrados)
         console.log("segundo cuadrado: ", cuadrados[1].innerHTML);
         cuadrados[2].classList.add("borde")
+
+        const input = document.querySelector("#input1");
+        console.log("value del input", input.value);
+        console.log("id del input: ", input.id);
+
+        input.value="nuevo valor"
+
+        document.querySelector("button").addEventListener("click", 
+            function(){
+                const texto = document.querySelector("#input1").value;
+                alert("valor actual del input: " + texto);
+            }
+        )
+
+        
     </script>
 </body>
 </html>
