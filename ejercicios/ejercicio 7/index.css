@@ -1,4 +1,6 @@
 #player1, #player2{
   position: absolute;
   text-shadow: 0 0 5px black;
+  font-size: 40px;
+  transition: all 1s linear;
 }
