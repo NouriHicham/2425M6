@@ -46,7 +46,7 @@ let posicion = [
 ];
 
 // funcion que devuelve numero random entre 1 y 6 para simular un dado
-function rand(){
+function dado(){
     //Math.floor(Math.random() * (max - min + 1) + min)
     let numRand = Math.floor(Math.random() * (6 - 1 + 1) + 1)
     return numRand
@@ -67,10 +67,15 @@ document.querySelector("#player2").setAttribute('style', `top: ${posicion[posici
 //desactivamos el boton del player2 porque comienza el 1
 document.querySelector("#dado2").disabled = true
 
+//funcion donde movera el dado de casilla en casilla
+function mover(posInicial, ){
+    document.querySelector("#player1").setAttribute('style', `top: ${posicion[posicion1].Y}px; left: ${posicion[posicion1].X}px;`)
+}
+
 //event listener del boton 1
 document.querySelector("#dado1").addEventListener("click", function(){
     //almaceno el numero random
-    let numRand = rand();
+    let numRand = dado();
     //se muestra por pantalla para saber que numero nos ha salido
     document.querySelector("#numDado1").innerHTML = `Dado: ${numRand}`
 
@@ -115,7 +120,7 @@ document.querySelector("#dado1").addEventListener("click", function(){
 
 //repito lo anterior
 document.querySelector("#dado2").addEventListener("click", function(){
-    let numRand = rand();
+    let numRand = dado();
     document.querySelector("#numDado2").innerHTML = `Dado: ${numRand}`
 
     posicion2 += numRand
