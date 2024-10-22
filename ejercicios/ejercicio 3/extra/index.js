@@ -2,7 +2,7 @@
 // Función para cargar el archivo Excel
 async function cargarExcel() {
     try {
-        // Ruta al archivo Excel. Asegúrate de que esta ruta sea correcta.
+        // Ruta al archivo Excel
         const response = await fetch('preguntas.xlsx');
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
@@ -33,7 +33,7 @@ async function cargarExcel() {
         // Convertir el objeto quiz a un array
         let quizArray = Object.values(quiz);
 
-        // Una vez cargado el quiz, generar la primera pregunta
+        //generar la primera pregunta
         if (quizArray.length > 0) {
             //console.log(quizArray)
             return quizArray
