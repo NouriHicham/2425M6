@@ -26,7 +26,7 @@
       <div class="col-12 mt-3 border p-5">
         <div class="mb-3">
           <label for="texto" class="form-label">Texto a analizar</label>
-          <textarea class="form-control mb-2" id="texto" rows="3" placeholder="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil voluptas aut necessitatibus placeat inventore fuga. Quisquam distinctio animi doloremque hic dignissimos quo id illum facere. Architecto quidem aliquam deserunt voluptates?">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil voluptas aut necessitatibus placeat inventore fuga. Quisquam distinctio animi doloremque hic dignissimos quo id illum facere. Architecto quidem aliquam deserunt voluptates?</textarea>
+          <textarea class="form-control mb-2" id="texto" rows="3" placeholder="Texto">popo</textarea>
           <button class="btn btn-warning mb-2" id="botonMayusculas">Convertir a Mayusculas</button>
           <button class="btn btn-danger mb-2" id="botonMinusculas">Convertir a Minúsculas</button>
 
@@ -52,14 +52,14 @@
       <div class="col-12 mt-3 border p-5">
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">Nombre: </span>
-          <input type="text" class="form-control" placeholder="Pepe Potamo" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" placeholder="Pepe Potamo" value="Pepe Potamo" aria-label="Username" aria-describedby="basic-addon1" id="nombreEj3">
           <span class="input-group-text" id="basic-addon1">Fecha: </span>
-          <input type="text" class="form-control" placeholder="12/12/2022" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" placeholder="12/12/2022" value="12/12/2022" aria-label="Username" aria-describedby="basic-addon1" id="fechaEj3">
         </div>
-        <button class="btn btn-success">Convertir nombre</button>
-        <button class="btn btn-warning ms-3">Convertir fecha</button>
-        <p class="mt-2">Nombre convertido: <strong>PEPE-POTAMO</strong></p>
-        <p>Fecha convertida: <strong>12-12-2022</strong></p>
+        <button class="btn btn-success" id="btnConvNombre">Convertir nombre</button>
+        <button class="btn btn-warning ms-3" id="btnConvFecha">Convertir fecha</button>
+        <p class="mt-2">Nombre convertido: <strong id="nomConv">PEPE-POTAMO</strong></p>
+        <p>Fecha convertida: <strong id="fechaConv">12-12-2022</strong></p>
       </div>
     </div>
 
@@ -68,7 +68,7 @@
       <div class="col-md-6 offset-md-3 col-12 offset-0 mt-3 border p-5">
         <label for="num1" class="form-label">Contraseña generada</label>
         <input id="pass" type="num" class="form-control" placeholder="akdjfuiRcF">
-        <button class="w-100 btn btn-success mt-2">Generar contraseña</button>
+        <button class="w-100 btn btn-success mt-2" id="btnPassword">Generar contraseña</button>
 
       </div>
     </div>
@@ -76,9 +76,8 @@
     <div class="row mt-5 bg-light p-5">
       <h2>Ejercicio 5 - Generador de emoticonos</h2>
       <div class="col-md-6 offset-md-3 col-12 offset-0 mt-3 border p-5">
-        <div class="w-100 d-flex justify-content-center" style="font-size: 60px;">😜</div>
-        <button class="w-100 btn btn-info mt-2 fs-3">Generar emoticono</button>
-
+        <div class="w-100 d-flex justify-content-center" style="font-size: 60px;" id="emoji">😜</div>
+        <button class="w-100 btn btn-info mt-2 fs-3" id="btnEmoji">Generar emoticono</button>
       </div>
     </div>
   </div>
