@@ -1,8 +1,8 @@
 // funcion para saber la posicion donde hace click el raton en la ventana del html
-document.addEventListener("click",function(event){
-    console.log(event.clientX)
-    console.log(event.clientY)
-})
+// document.addEventListener("click",function(event){
+//     console.log(event.clientX)
+//     console.log(event.clientY)
+// })
 
 //array con todas las posiciones
 let posicion = [
@@ -55,6 +55,9 @@ function dado(){
 //variables con donde se guardara la posicion de la ficha en todo momento
 let posicion1 = 0
 let posicion2 = 0
+//variables para guardar la posicion inicial para la funcion de mover las fichas
+let anteriorPos1
+let anteriorPos2
 
 //variable para el turno extra
 let turnoExtra = false
@@ -67,96 +70,165 @@ document.querySelector("#player2").setAttribute('style', `top: ${posicion[posici
 //desactivamos el boton del player2 porque comienza el 1
 document.querySelector("#dado2").disabled = true
 
-//funcion donde movera el dado de casilla en casilla
-function mover(posInicial, ){
-    document.querySelector("#player1").setAttribute('style', `top: ${posicion[posicion1].Y}px; left: ${posicion[posicion1].X}px;`)
+//funcion mover ficha casilla a casilla
+function moverFicha1Casilla(posicionFinal, posicionInicial){
+    let repetir=0;
+    let retrasoParpadeo = 0;
+    for(let i=posicionInicial;i<=posicionFinal;i++){
+        setTimeout(() => {
+            document.querySelector("#player1").setAttribute('style', `top: ${posicion[i].Y}px; left: ${posicion[i].X}px;`)
+        }, 800*repetir);
+        retrasoParpadeo = retrasoParpadeo + 800 * repetir
+        repetir++
+    }
+    console.log(retrasoParpadeo)
+    
+    if(posicionFinal==2){
+        setTimeout(() => {
+            parpadeoPlayer1(21)
+        }, retrasoParpadeo);
+    }else if(posicionFinal==7){
+        setTimeout(() => {
+            parpadeoPlayer1(11)
+        }, retrasoParpadeo);
+    }else if(posicionFinal==12){
+        setTimeout(() => {
+            parpadeoPlayer1(1)
+        }, retrasoParpadeo);
+    }else if(posicionFinal==14){
+        setTimeout(() => {
+            parpadeoPlayer1(29)
+        }, retrasoParpadeo);
+    }else if(posicionFinal==22){
+        setTimeout(() => {
+            parpadeoPlayer1(24)
+        }, retrasoParpadeo);
+    }else if(posicionFinal==30){
+        setTimeout(() => {
+            parpadeoPlayer1(27)
+        }, retrasoParpadeo);
+    }
+    
+}
+
+function parpadeoPlayer1(posicionFinal){
+    let retrasoMov = 0;
+    posicion1 = posicionFinal
+    for(let i=0;i<5;i++){
+        setTimeout(() => {
+            document.querySelector("#color1").setAttribute('style', `color: rgba(153, 205, 50, 0.274); text-shadow: 0 0 0px black;`)
+        }, 500*i);
+
+        setTimeout(() => {
+            document.querySelector("#color1").setAttribute('style', `color: rgba(153, 205, 50); text-shadow: 0 0 8px black;`)
+        }, 500 * (i + 0.5));
+
+        retrasoMov = retrasoMov + 500
+
+    }
+
+    setTimeout(() => {
+        document.querySelector("#player1").setAttribute('style', `top: ${posicion[posicionFinal].Y}px; left: ${posicion[posicionFinal].X}px;`)
+    }, retrasoMov);
+
 }
 
 //event listener del boton 1
 document.querySelector("#dado1").addEventListener("click", function(){
+    
     //almaceno el numero random
     let numRand = dado();
     //se muestra por pantalla para saber que numero nos ha salido
     document.querySelector("#numDado1").innerHTML = `Dado: ${numRand}`
 
     //se suma la posicion más el numero random que hayamos obtenido
+    
+    anteriorPos1 = posicion1
     posicion1 += numRand
 
-    //si cae en una casilla puede acabar en otra o activar el turno extra, hacemos un else if un poco sucio para ello
-    if(posicion1==2){
-        posicion1 = 21
-    }else if(posicion1 == 5 || posicion1 == 18 || posicion1 == 31){
-        turnoExtra2 = true
-    }else if(posicion1==7){
-        posicion1 = 11
-    }else if(posicion1 == 12){
-        posicion1 = 0
-    }else if(posicion1 == 14){
-        posicion1 = 29
-    }else if(posicion1 == 22){
-        posicion1 = 24
-    }else if(posicion1 == 25){
-        posicion1 = 9
-    }else if(posicion1 == 30){
-        posicion1 = 27
-    }else if(posicion1 == 33){
-        posicion1 = 20
-    }else if(posicion1>=36){
-        posicion1 = 36
-        document.querySelector("#dado2").disabled = true
-        document.querySelector("#dado1").disabled = true
-    }
+    //si cae en una casilla puede acabar en otra o activar el turno extra
+    // if(posicion1==2){
+    //     posicion1 = 21
+    // }else if(posicion1 == 5 || posicion1 == 18 || posicion1 == 31){
+    //     turnoExtra2 = true
+    // }else if(posicion1==7){
+    //     posicion1 = 11
+    // }else if(posicion1 == 12){
+    //     posicion1 = 0
+    // }else if(posicion1 == 14){
+    //     posicion1 = 29
+    // }else if(posicion1 == 22){
+    //     posicion1 = 24
+    // }else if(posicion1 == 25){
+    //     posicion1 = 9
+    // }else if(posicion1 == 30){
+    //     posicion1 = 27
+    // }else if(posicion1 == 33){
+    //     posicion1 = 20
+    // }else if(posicion1>=36){
+    //     posicion1 = 36
+    //     document.querySelector("#dado2").disabled = true
+    //     document.querySelector("#dado1").disabled = true
+    // }
 
     //movemos la ficha a la posicion que debe estar
-    document.querySelector("#player1").setAttribute('style', `top: ${posicion[posicion1].Y}px; left: ${posicion[posicion1].X}px;`)
+    //setTimeout(moverFicha, 3000, "#player1", posicion1);
+    
+    moverFicha1Casilla(posicion1, anteriorPos1);
 
     // Cambiar turno solo si no hay turno extra
     if (!turnoExtra) {
-        document.querySelector("#dado2").disabled = false;
-        document.querySelector("#dado1").disabled = true;
+        //document.querySelector("#dado2").disabled = false;
+        //document.querySelector("#dado1").disabled = true;
     }
     turnoExtra = false
 })
 
 //repito lo anterior
-document.querySelector("#dado2").addEventListener("click", function(){
-    let numRand = dado();
-    document.querySelector("#numDado2").innerHTML = `Dado: ${numRand}`
+// document.querySelector("#dado2").addEventListener("click", function(){
+//     let numRand = dado();
+//     document.querySelector("#numDado2").innerHTML = `Dado: ${numRand}`
 
-    posicion2 += numRand
+//     posicion2 += numRand
 
-    if(posicion2==2){
-        posicion2 = 21;
-    }else if(posicion2 == 5 || posicion2 == 18 || posicion2 == 31){
-        turnoExtra = true;
-    }else if(posicion2==7){
-        posicion2 = 11;
-    }else if(posicion2 == 12){
-        posicion2 = 0;
-    }else if(posicion2 == 14){
-        posicion2 = 29;
-    }else if(posicion2 == 22){
-        posicion2 = 24;
-    }else if(posicion2 == 25){
-        posicion2 = 9;
-    }else if(posicion2 == 30){
-        posicion2 = 27;
-    }else if(posicion2 == 33){
-        posicion2 = 20;
-    }else if(posicion2>=36){
-        posicion2 = 36;
-        document.querySelector("#dado2").disabled = true;
-        document.querySelector("#dado1").disabled = true;
-    }
+//     if(posicion2==2){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 21;
+//     }else if(posicion2 == 5 || posicion2 == 18 || posicion2 == 31){
+//         turnoExtra = true;
+//     }else if(posicion2==7){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 11;
+//     }else if(posicion2 == 12){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 0;
+//     }else if(posicion2 == 14){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 29;
+//     }else if(posicion2 == 22){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 24;
+//     }else if(posicion2 == 25){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 9;
+//     }else if(posicion2 == 30){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 27;
+//     }else if(posicion2 == 33){
+//         setTimeout(moverFicha, 1500, "#player2", posicion2);
+//         posicion2 = 20;
+//     }else if(posicion2>=36){
+//         posicion2 = 36;
+//         document.querySelector("#dado2").disabled = true;
+//         document.querySelector("#dado1").disabled = true;
+//     }
 
-    document.querySelector("#player2").setAttribute('style', `top: ${posicion[posicion2].Y}px; left: ${posicion[posicion2].X-25}px;`)
+//     setTimeout(moverFicha, 2700, "#player2", posicion2);
 
-    if (!turnoExtra2) {
-        document.querySelector("#dado1").disabled = false;
-        document.querySelector("#dado2").disabled = true;
-    }
-    turnoExtra2 = false
+//     if (!turnoExtra2) {
+//         document.querySelector("#dado1").disabled = false;
+//         document.querySelector("#dado2").disabled = true;
+//     }
+//     turnoExtra2 = false
     
-})
-
-//set timeout para mas tarde
+// })

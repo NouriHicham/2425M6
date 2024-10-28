@@ -1,43 +1,55 @@
 
-const quiz = [
-    {
-      pregunta: "¿Cuál es el planeta más cercano al Sol?",
-      respuestas: [
-        { texto: "Marte", esCorrecta: false },
-        { texto: "Venus", esCorrecta: false },
-        { texto: "Mercurio", esCorrecta: true },
-        { texto: "Júpiter", esCorrecta: false }
-      ]
-    },
-    {
-      pregunta: "¿En qué año llegó el hombre a la Luna?",
-      respuestas: [
-        { texto: "1980", esCorrecta: false },
-        { texto: "1970", esCorrecta: false },
-        { texto: "1959", esCorrecta: false },
-        { texto: "1969", esCorrecta: true }
-      ]
-    },
-    {
-      pregunta: "¿Cuál es el metal más abundante en la corteza terrestre?",
-      respuestas: [
-        { texto: "Aluminio", esCorrecta: true },
-        { texto: "Hierro", esCorrecta: false },
-        { texto: "Cobre", esCorrecta: false },
-        { texto: "Oro", esCorrecta: false }
-      ]
-    },
-    {
-      pregunta: "¿Qué país tiene la mayor cantidad de población en el mundo?",
-      respuestas: [
-        { texto: "Estados Unidos", esCorrecta: false },
-        { texto: "India", esCorrecta: false },
-        { texto: "China", esCorrecta: true },
-        { texto: "Rusia", esCorrecta: false }
-      ]
-    }
-];
+// Función para cargar el archivo Excel
+async function cargarExcel() {
+    try {
+        // Ruta al archivo Excel
+        const response = await fetch('preguntas.xlsx');
+        const arrayBuffer = await response.arrayBuffer();
+        const data = new Uint8Array(arrayBuffer);
+        const workbook = XLSX.read(data, { type: 'array' });
 
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
+
+        // Procesar los datos y llenar el array quiz
+        let quiz = {};
+
+        // Agrupar las respuestas por pregunta
+        jsonData.forEach(row => {
+            const pregunta = row.Pregunta;
+            const respuesta = row.Respuesta;
+            const esCorrecta = row.EsCorrecta === true || row.EsCorrecta === 'true'; // Comprobamos si es verdadero
+
+            // Inicializar la pregunta si no existe
+            if (!quiz[pregunta]) {
+                quiz[pregunta] = { pregunta, respuestas: [] };
+            }
+
+            // Agregar la respuesta a la pregunta
+            quiz[pregunta].respuestas.push({ texto: respuesta, esCorrecta });
+        });
+
+        // Convertir el objeto quiz a un array
+        let quizArray = Object.values(quiz);
+
+        //generar la primera pregunta
+        if (quizArray.length > 0) {
+            //console.log(quizArray)
+            return quizArray
+        } else {
+            document.querySelector("#question").innerHTML = "No se encontraron preguntas en el archivo Excel.";
+            deshabilitarBotones(true);
+        }
+    } catch (error) {
+        console.error("Error al cargar el archivo Excel:", error);
+        document.querySelector("#question").innerHTML = "Error al cargar las preguntas.";
+        deshabilitarBotones(true);
+    }
+}
+
+let quiz = cargarExcel();
+console.log(quiz)
 
 // saca un numero random entre el numero de preguntas que haya en el array
 let rand;
