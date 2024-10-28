@@ -45,6 +45,46 @@ let posicion = [
     {X: 675, Y: 425}
 ];
 
+//array con preguntas
+const quiz = [
+    {
+      pregunta: "¿Cuál es el planeta más cercano al Sol?",
+      respuestas: [
+        { texto: "Marte", esCorrecta: false },
+        { texto: "Venus", esCorrecta: false },
+        { texto: "Mercurio", esCorrecta: true },
+        { texto: "Júpiter", esCorrecta: false }
+      ]
+    },
+    {
+      pregunta: "¿En qué año llegó el hombre a la Luna?",
+      respuestas: [
+        { texto: "1980", esCorrecta: false },
+        { texto: "1970", esCorrecta: false },
+        { texto: "1959", esCorrecta: false },
+        { texto: "1969", esCorrecta: true }
+      ]
+    },
+    {
+      pregunta: "¿Cuál es el metal más abundante en la corteza terrestre?",
+      respuestas: [
+        { texto: "Aluminio", esCorrecta: true },
+        { texto: "Hierro", esCorrecta: false },
+        { texto: "Cobre", esCorrecta: false },
+        { texto: "Oro", esCorrecta: false }
+      ]
+    },
+    {
+      pregunta: "¿Qué país tiene la mayor cantidad de población en el mundo?",
+      respuestas: [
+        { texto: "Estados Unidos", esCorrecta: false },
+        { texto: "India", esCorrecta: false },
+        { texto: "China", esCorrecta: true },
+        { texto: "Rusia", esCorrecta: false }
+      ]
+    }
+];
+
 // funcion que devuelve numero random entre 1 y 6 para simular un dado
 function dado(){
     //Math.floor(Math.random() * (max - min + 1) + min)
@@ -111,6 +151,7 @@ function moverFicha1Casilla(posicionFinal, posicionInicial){
     
 }
 
+//funcion para animacion de parpadeo y mover a la posicion nueva
 function parpadeoPlayer1(posicionFinal){
     let retrasoMov = 0;
     posicion1 = posicionFinal
@@ -133,6 +174,11 @@ function parpadeoPlayer1(posicionFinal){
 
 }
 
+//funcion que sale una pregunta si se cae en una casilla vacia
+function pregunta(player){
+
+}
+
 //event listener del boton 1
 document.querySelector("#dado1").addEventListener("click", function(){
     
@@ -141,39 +187,23 @@ document.querySelector("#dado1").addEventListener("click", function(){
     //se muestra por pantalla para saber que numero nos ha salido
     document.querySelector("#numDado1").innerHTML = `Dado: ${numRand}`
 
-    //se suma la posicion más el numero random que hayamos obtenido
-    
+    //guardamos la posicion
     anteriorPos1 = posicion1
+    //se suma la posicion más el numero random que hayamos obtenido
     posicion1 += numRand
 
-    //si cae en una casilla puede acabar en otra o activar el turno extra
-    // if(posicion1==2){
-    //     posicion1 = 21
-    // }else if(posicion1 == 5 || posicion1 == 18 || posicion1 == 31){
-    //     turnoExtra2 = true
-    // }else if(posicion1==7){
-    //     posicion1 = 11
-    // }else if(posicion1 == 12){
-    //     posicion1 = 0
-    // }else if(posicion1 == 14){
-    //     posicion1 = 29
-    // }else if(posicion1 == 22){
-    //     posicion1 = 24
-    // }else if(posicion1 == 25){
-    //     posicion1 = 9
-    // }else if(posicion1 == 30){
-    //     posicion1 = 27
-    // }else if(posicion1 == 33){
-    //     posicion1 = 20
-    // }else if(posicion1>=36){
-    //     posicion1 = 36
-    //     document.querySelector("#dado2").disabled = true
-    //     document.querySelector("#dado1").disabled = true
-    // }
+    //si cae en cierta casilla activar el turno extra o se acaba el juego si es la ultima
+    if(posicion1 == 5 || posicion1 == 18 || posicion1 == 31){
+        turnoExtra2 = true
+    }else if(posicion1>=36){
+        posicion1 = 36
+        document.querySelector("#dado2").disabled = true
+        document.querySelector("#dado1").disabled = true
+    }else{
+
+    }
 
     //movemos la ficha a la posicion que debe estar
-    //setTimeout(moverFicha, 3000, "#player1", posicion1);
-    
     moverFicha1Casilla(posicion1, anteriorPos1);
 
     // Cambiar turno solo si no hay turno extra
