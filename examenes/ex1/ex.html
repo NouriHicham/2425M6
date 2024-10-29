@@ -217,13 +217,13 @@
         document.querySelector("#btnPotencia").addEventListener("click", function(){
             let potencia = parseInt(document.querySelector("#txtPotencia").value)
 
-            const fecha = new Date();
-            const horas = fecha.getHours().toString().padStart(2, '0');
-            const minutos = fecha.getMinutes().toString().padStart(2, '0');
-
-            const horaActual = `${horas}:${minutos}`;
-
+            //rellena la hora
+            let fecha = new Date();
+            let horas = fecha.getHours().toString().padStart(2, '0');
+            let minutos = fecha.getMinutes().toString().padStart(2, '0');
+            let horaActual = `${horas}:${minutos}`;
             document.querySelector("#hora").innerHTML = `${horaActual}`;
+
             //borra lo que haya dentro
             document.querySelector("#resultatCerca").innerHTML = ``;
 
