@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container text-center text-primary"><h1 class="">Cotxes més potents de 2022</h1></div>
+    <div class="container border" style="padding: 40px;">
+        <div class="rounded bg-primary text-bg-primary text-center">
+            <h1 class="">Targetes de cotxes</h1>
+        </div>
+        <div class="row" id="tarjetas">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="rounded bg-primary text-bg-primary text-center">
+            <h1 class="">Comparació de cotxes</h1>
+        </div>
+        <div class="row" style="padding-bottom: 30px;">
+            <div class="col">
+                <label for="">Selecciona el primer cotxe</label>
+                <select class="form-select" name="primerCotxe" id="primerCotxe">
+                    <option selected>Selecciona</option>
+                    <option value="0">Bugatti Chiron Super Sport 300+</option>
+                    <option value="1">Koenigsegg Jesko</option>
+                    <option value="2">Hennessey Venom F5</option>
+                    <option value="3">Rimac C_Two</option>
+                    <option value="4">Lamborghini Sian</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="">Selecciona el segon cotxe</label>
+                <select class="form-select" name="segonCotxe" id="segonCotxe">
+                    <option selected>Selecciona</option>
+                    <option value="0">Bugatti Chiron Super Sport 300+</option>
+                    <option value="1">Koenigsegg Jesko</option>
+                    <option value="2">Hennessey Venom F5</option>
+                    <option value="3">Rimac C_Two</option>
+                    <option value="4">Lamborghini Sian</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" id="btnComparar">Comparar</button>
+            </div>
+        </div>
+        <div class="row" style="padding: 0 10px;">
+            <table class="table table-bordered" id="tablaComparar">
+                <thead>
+                    <tr>
+                        <th>Caracteristica</th>
+                        <th>Coche1</th>
+                        <th>Coche2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Potencia</td>
+                        <td>Coche1</td>
+                        <td>Coche2</td>
+                    </tr>
+                    <tr>
+                        <td>Motor</td>
+                        <td>Coche1</td>
+                        <td>Coche2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container border" style="padding-top: 20px;">
+        <div class="rounded bg-primary text-bg-primary text-center">
+            <h1 class="">Cerca de Potència</h1>
+        </div>
+        <div>
+            <form>
+                <div class="form-group">
+                  <label for="potencia">Buscar cotxes amb més de:</label>
+                  <input type="text" class="form-control" id="txtPotencia" value="1200">
+                </div>
+                <button type="button" class="btn btn-success" id="btnPotencia">Cercar</button>
+              </form>
+        </div>
+        <div>
+            <strong>Cerca feta a les </strong>
+            <ul id="resultatCerca">
+            </ul>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        //array de coches
+        const coches = [
+            {
+                model: "Bugatti Chiron Super Sport 300+",
+                potencia: 1500,
+                motor: "8.0 litres W16",
+                foto: "https://newsroom.cdn.bugatti-media.com/854d2f52-8953-442f-a54e-1b0e57cf48a1/xl"
+            },
+            {
+                model: "Koenigsegg Jesko",
+                potencia: 1600,
+                motor: "V8 de 5.0 litres",
+                foto: "https://cdn.topgear.es/sites/navi.axelspringer.es/public/media/image/2022/08/koenigsegg-jesko-attack-2797801.jpg?tf=750x"
+            },
+            {
+                model: "Hennessey Venom F5",
+                potencia: 1800,
+                motor: "V8 de 6.6 litres",
+                foto: "https://cdn.motor1.com/images/mgl/AkKbbP/s4/hennessey-venom-f5-revolution.webp"
+            },
+            {
+                model: "Rimac C_Two",
+                potencia: 1900,
+                motor: "Elèctric",
+                foto: "https://img.remediosdigitales.com/aeddf5/rimac-c_two-2019/1024_2000.jpg"
+            },
+            {
+                model: "Lamborghini Sian",
+                potencia: 800,
+                motor: "V12 híbrid",
+                foto: "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/few_off/sian-fkp-37/2023/over_m.jpg"
+            }
+        ];
+
+        //Vacia el contenedor con las tarjetas
+        document.querySelector("#tarjetas").innerHTML = "";
+        //lo lleno con lo que hay en la array, por cada elemento añade un div con los datos
+        for(let i=0;i<coches.length;i++){
+            document.querySelector("#tarjetas").innerHTML += `
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="${coches[i].foto}" alt="${coches[i].model}">
+                    <div class="card-body">
+                    <p class="card-text text-primary fw-bold">${coches[i].model}</p>
+                    <p class="card-text">Potencia: ${coches[i].potencia}+ cavalls de força</p>
+                    <p class="card-text">Motor: ${coches[i].motor}</p>
+                    </div>
+                </div>`;
+        }
+
+        //lleno los selects con un option vacia
+        document.querySelector("#primerCotxe").innerHTML="<option selected>Selecciona</option>";
+        document.querySelector("#segonCotxe").innerHTML="<option selected>Selecciona</option>";
+        //select se rellena automaticamente con la array
+        for(let i=0;i<coches.length;i++){
+            document.querySelector("#primerCotxe").innerHTML+=`<option value="${i}">${coches[i].model}</option>`;
+        }
+        //lo mismo que antes pero con el segundo
+        for(let i=0;i<coches.length;i++){
+            document.querySelector("#segonCotxe").innerHTML+=`<option value="${i}">${coches[i].model}</option>`;
+        }
+
+        //Comparacio
+        document.querySelector("#btnComparar").addEventListener("click", function(){
+            //guardo valores que obtengo del select y los transformo a int
+            let cotxe1 = parseInt(document.querySelector("#primerCotxe").value)
+            let cotxe2 = parseInt(document.querySelector("#segonCotxe").value)
+
+            document.querySelector("#tablaComparar").innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Caracteristica</th>
+                        <th>${coches[cotxe1].model}</th>
+                        <th>${coches[cotxe2].model}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Potencia</td>
+                        <td>${coches[cotxe1].potencia} cavalls</td>
+                        <td>${coches[cotxe2].potencia} cavalls</td>
+                    </tr>
+                    <tr>
+                        <td>Motor</td>
+                        <td>${coches[cotxe1].motor}</td>
+                        <td>${coches[cotxe2].motor}</td>
+                    </tr>
+                </tbody>`
+        })
+
+        //cercar
+        document.querySelector("#btnPotencia").addEventListener("click", function(){
+            let potencia = parseInt(document.querySelector("#txtPotencia").value)
+
+            //borra lo que haya dentro
+            document.querySelector("#resultatCerca").innerHTML = ``;
+
+            //comprovamos si es un numero
+            if(Number.isInteger(potencia)==true){
+                for(let i=0;i<coches.length;i++){
+                    // si el numero es mayor imprime en la lista
+                    if(potencia<coches[i].potencia){
+                        document.querySelector("#resultatCerca").innerHTML += `
+                            <li>${coches[i].model} - ${coches[i].potencia} cavalls</li>
+                        `;
+                    }
+                }
+            }else{
+                document.querySelector("#txtPotencia").value = "Introduzca un numero valido"
+            }
+
+            
+        })
+
+    </script>
+</body>
+</html>
