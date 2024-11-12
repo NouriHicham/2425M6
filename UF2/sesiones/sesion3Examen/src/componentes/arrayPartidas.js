@@ -10,3 +10,5 @@ export const arrayPartidas = [
   { avatar: "💀", nick: "SkullCrusher", puntos: 3450, fecha: "2024-11-13" },
   { avatar: "🦖", nick: "DinoDestroyer", puntos: 3120, fecha: "2024-11-14" },
 ];
+
+export const nuevaPartida = {avatar: "👽", nick: "Paco", puntos: 2, fecha: "2024-11-12",};

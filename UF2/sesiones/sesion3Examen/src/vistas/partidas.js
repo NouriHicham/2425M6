@@ -1,7 +1,7 @@
-import {arrayPartidas} from "../componentes/arrayPartidas.js";
+import { arrayPartidas, nuevaPartida } from "../componentes/arrayPartidas.js";
 
 function pintaTablas() {
-  let tablaPartidas;
+  let tablaPartidas = ``;
   for (let i = 0; i < arrayPartidas.length; i++) {
     tablaPartidas += `
          <tr>
@@ -36,6 +36,30 @@ function form(){
    `;
 }
 
+function pintaDatosPartida(){
+   return `
+   <button type="button" class="btn btn-success mt-3 mb-5" id="btnNueva">Insertar partida completamente nueva</button>
+   `;
+}
+
+function guardarPartida(){
+   arrayPartidas.push({
+     avatar: nuevaPartida["avatar"],
+     nick: nuevaPartida["nick"],
+     puntos: nuevaPartida["puntos"],
+     fecha: nuevaPartida["fecha"],
+   });
+}
+
+export function ventanaGuardarPartida(){
+   let resultado = window.confirm('Guardar partida?');
+   if (resultado == true) {
+      guardarPartida();
+   } else { 
+      window.alert('no');
+   }
+}
+
 export function partidas() {
   return `
    <h1>Partidas</h1>
@@ -56,5 +80,6 @@ export function partidas() {
       <h2>Insertar nueva partida</h2>
       ${form()}
    </form>
+   ${pintaDatosPartida()}
    `;
 }
